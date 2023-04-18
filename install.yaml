@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helmsamplechartapp-prd
+  namespace: argocd
+spec:
+  project: default  
+  destination:
+    namespace: helmsamplechart
+    name: in-cluster  #update cluster name if its different
+  source:
+    repoURL: https://github.com/davidboukari/helmsamplechart.git
+    path: charts
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml #any custom value file you want to apply.
