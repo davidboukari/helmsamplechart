@@ -14,9 +14,8 @@ spec:
   template:
     metadata:
       {{- with .Values.podAnnotations }}
-      #annotations:
-      #  "test" : "test"
-      #  checksum/config: {{ include (print $.Template.BasePath "/configmapfile.yaml") . | sha256sum }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmapfile.yaml") . | sha256sum }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
