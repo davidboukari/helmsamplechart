@@ -15,3 +15,6 @@ spec:
     helm:
       valueFiles:
         - values.yaml #any custom value file you want to apply.
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true          

@@ -20,6 +20,16 @@ spec:
       labels:
         {{- include "myproject.selectorLabels" . | nindent 8 }}
     spec:
+      volumes:
+        {{- if .Values.configmapfiles }}
+        {{- if .Values.configmapfiles.enabled }}
+        {{- range $myconfigmapfiles := .Values.configmapfiles.configmaps }}
+        - name: {{ $myconfigmapfiles.name }}
+          configMap:
+            name: {{ $myconfigmapfiles.name }}
+        {{- end }}
+        {{- end }}
+        {{- end }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -37,6 +47,11 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          {{- if .Values.configmap }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configmap.name }}
+          {{- end }}
           livenessProbe:
             httpGet:
               path: /
@@ -45,6 +60,13 @@ spec:
             httpGet:
               path: /
               port: http
+          volumeMounts:
+            {{- if .Values.configmapfiles.enabled -}}
+            {{- range $myconfigmapfiles := .Values.configmapfiles.configmaps }}
+            - name: {{ $myconfigmapfiles.name }}
+              mountPath: {{ $myconfigmapfiles.mountPath }}
+            {{- end }}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

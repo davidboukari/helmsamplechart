@@ -1,0 +1,14 @@
+{{- if .Values.configmapfiles.enabled }}
+{{- range $configmapfile := .Values.configmapfiles.configmaps }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $configmapfile.name }}
+  labels:
+{{ include "myproject.labels" $ | indent 4 }}
+data:
+{{ $configmapfile.filename | indent 2 }}: |
+{{ $configmapfile.data | indent 4 }}
+---
+{{- end }}
+{{- end }}

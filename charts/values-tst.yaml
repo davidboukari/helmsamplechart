@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-env: noenv
+env: tst
 replicaCount: 2
 
 image:
@@ -48,7 +48,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: chart-example.local
+    - host: chart-example-tst.local
       paths:
         - path: /
           pathType: ImplementationSpecific
@@ -90,6 +90,7 @@ configmapfiles:
       filename: config1.json
       data: |-
         {
+          "env": "tst",
           "key1": "val1",
           "key2": "val2",
           "key3": "val3"
