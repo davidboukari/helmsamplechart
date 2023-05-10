@@ -90,7 +90,7 @@ configmapfiles:
       filename: config1.json
       data: |-
         {
-          "addedkey": "valadded-12"
+          "addedkey": "valadded-123"
           "env": "tst",
           "key1": "val1",
           "key2": "val2",
