@@ -97,7 +97,7 @@ configmapfiles:
           "key3": "val3"
         }
     - name: configmap2
-      mountPath: /etc/config
+      mountPath: /etc/config2
       filename: config2.json
       data: |-
         {
@@ -106,7 +106,7 @@ configmapfiles:
           "key23": "val23"
         }
     - name: configmap3
-      mountPath: /etc/config
+      mountPath: /etc/config3
       filename: config3.txt
       data: |-
         [SECTION1]
