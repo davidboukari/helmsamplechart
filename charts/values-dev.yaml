@@ -86,7 +86,7 @@ configmapfiles:
   enabled: true
   configmaps:
     - name: configmap1
-      mountPath: /etc/config/config1.json
+      mountPath: /etc/config
       filename: config1.json
       data: |-
         {
@@ -96,7 +96,7 @@ configmapfiles:
           "key3": "val3"
         }
     - name: configmap2
-      mountPath: /etc/config/config2.json
+      mountPath: /etc/config
       filename: config2.json
       data: |-
         {
@@ -105,7 +105,7 @@ configmapfiles:
           "key23": "val23"
         }
     - name: configmap3
-      mountPath: /etc/config/config3.json
+      mountPath: /etc/config
       filename: config3.txt
       data: |-
         [SECTION1]
