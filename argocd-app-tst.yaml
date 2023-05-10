@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: helmsamplechartapp-prd
+  name: helmsamplechartapp-tst
   namespace: argocd
 spec:
   project: default  
   destination:
-    namespace: helmsamplechart
+    namespace: helmsamplechart-tst
     name: in-cluster  #update cluster name if its different
   source:
     repoURL: https://github.com/davidboukari/helmsamplechart.git
@@ -14,7 +14,7 @@ spec:
     targetRevision: HEAD
     helm:
       valueFiles:
-        - values.yaml #any custom value file you want to apply.
+        - values-tst.yaml #any custom value file you want to apply.
   syncPolicy:
     syncOptions:
     - CreateNamespace=true          
