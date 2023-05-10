@@ -16,6 +16,7 @@ spec:
       {{- with .Values.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
+        checksum/config: {{ include (print $.Template.BasePath "/configmapfile.yaml") . | sha256sum }}
       {{- end }}
       labels:
         {{- include "myproject.selectorLabels" . | nindent 8 }}
