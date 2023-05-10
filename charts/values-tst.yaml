@@ -25,7 +25,7 @@ serviceAccount:
   name: ""
 
 podAnnotations: {}
-
+#  app.kubernetes.io/managed-by: "helm"
 podSecurityContext: {}
   # fsGroup: 2000
 
